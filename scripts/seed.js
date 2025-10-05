@@ -1,19 +1,22 @@
 import { loremIpsum} from "lorem-ipsum";
 import { Pool } from "pg";
+import config from "config";
 
-const getRandomNumber = () => Math.floor(Math.random() * 10);
-const createRandomIP = () => {};
+const dbConfig = config.get("db");
 
-const pool = new Pool({
-   user: "dev",
-   password: "devpassword",
-   database: "ideas",
-   host: "localhost"
-});
+const createRandomIP = (pool = []) => {
+   if (Array.isArray(pool) && pool.length > 0) {
+      return pool[Math.floor(Math.random() * pool.length)];
+   }
+   const octet = () => Math.floor(Math.random() * 254) + 1;
+   return `${octet()}.${octet()}.${octet()}.${octet()}`;
+};
+
+const pool = new Pool(dbConfig);;
 
 async function createDummyIdeas(count = 10) {
    const dummyIdeas = [];
-   for (let i = 0; i < 10; i++) {
+   for (let i = 0; i < count; i++) {
       const title = loremIpsum({ count: 1, units: "sentence" });
       const description = loremIpsum({ count: 1, units: "paragraph" });
 
@@ -23,20 +26,23 @@ async function createDummyIdeas(count = 10) {
 
       dummyIdeas.push(...rows);
    }
+
+   return dummyIdeas;
 }
 
 async function attachVotes(ideas) {
    for (const { id } of ideas) {
-      const ip = createRandomIP(ipPool);
-      await pool.query(`INSERT INTO vote (id, ip) VALUES ($1, $2) RETURNING *`,
+      const ip = createRandomIP();
+      await pool.query(`INSERT INTO vote (idea_id, ip) VALUES ($1, $2) RETURNING *`,
          [id, ip]
       );
    }
 }
 
 async function fillDb() {
-   const ideas = await createDummyIdeas(3);
-   attachVotes(ideas);
+   const ideas = await createDummyIdeas(10);
+   
+   await attachVotes(ideas);
 }
 
 try {

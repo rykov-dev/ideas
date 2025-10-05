@@ -1,6 +1,6 @@
 export const GET_IDEAS = `
 SELECT
-   i.id, title, description, count(v.id) AS votes, array_agg(v.ip) as ips
+   i.id, title, description, count(v.id) AS votes, COALESCE(array_agg(v.ip), '{}') as ips
 FROM idea i
 LEFT JOIN vote v ON
    v.idea_id = i.id
@@ -9,7 +9,7 @@ ORDER BY votes DESC
 `;
 export const GET_IDEA = `
 SELECT
-   i.id, title, description, count(v.id) AS votes, array_agg(v.ip) as ips
+   i.id, title, description, count(v.id) AS votes, COALESCE(array_agg(v.ip), '{}') as ips
 FROM idea i
 LEFT JOIN vote v ON
    v.idea_id = i.id

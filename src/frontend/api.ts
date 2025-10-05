@@ -1,4 +1,4 @@
-import { Idea } from './types';
+import { Idea } from "./types";
 
 export async function getIdeas(): Promise<Idea[]> {
    const res = await fetch("/api/v1/idea");

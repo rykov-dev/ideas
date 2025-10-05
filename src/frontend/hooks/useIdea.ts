@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Idea } from '../types';
-import { getIdeas } from '../api';
+import { useEffect, useState } from "react";
+import { Idea } from "../types";
+import { getIdeas } from "../api";
 
 export function useIdea() {
    const [isLoading, setIsLoading] = useState<boolean>();

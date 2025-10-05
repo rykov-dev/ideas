@@ -7,6 +7,7 @@ const { HOST: host = "127.0.0.1", PORT: port = 3000 } = process.env;
 const app = express();
 
 app
+.set("trust proxy", true)
 .use(requestIp.mw())
 .use("/idea", ideaRouter)
 .use(finalErrorHandler);
@@ -15,5 +16,5 @@ const server = app.listen(port as number, host, () => {
    console.info(`Server started on: ${host}:${port}`);
 });
 
-process.on('SIGTERM', () => gracefulShutdown(server, 'SIGTERM'));
-process.on('SIGINT', () => gracefulShutdown(server, 'SIGINT'));
+process.on("SIGTERM", () => gracefulShutdown(server, "SIGTERM"));
+process.on("SIGINT", () => gracefulShutdown(server, "SIGINT"));

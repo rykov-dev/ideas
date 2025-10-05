@@ -1,12 +1,9 @@
 import { Pool } from "pg";
 import { GET_IDEA, GET_IDEAS, UPVOTE_IDEA, VOTE_COUNT } from './queries';
+import config from "config";
 
-const pool = new Pool({
-   host: "localhost",
-   user: "dev",
-   password: "devpassword",
-   database: "ideas"
-});
+const dbConfig = config.get("db");
+const pool = new Pool(dbConfig);
 
 export async function getIdeas() {
    const { rows } = await pool.query(GET_IDEAS);

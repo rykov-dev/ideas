@@ -1,5 +1,5 @@
 import React from "react";
-import { Idea } from '../types';
+import { Idea } from "../types";
 
 export function IdeaList({ data, onUpvote }) {
    return (<ul className="idea-list" onClick={onUpvote}>

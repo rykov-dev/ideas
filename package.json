@@ -7,9 +7,12 @@
     "dev": "npm run dev:back & npm run dev:front",
     "build:front": "vite build src/frontend --emptyOutDir --config ./vite.config.ts",
     "build:back": "tsc --build",
-    "build": "build:back && build:front"
+    "build": "npm run build:back && npm run build:front",
+    "seed": "node scripts/seed.js",
+    "setup": "node scripts/setup.js"
   },
   "dependencies": {
+    "config": "^4.1.1",
     "express": "^5.1.0",
     "pg": "^8.16.3",
     "react": "^19.2.0",

@@ -6,7 +6,10 @@ const VOTE_LIMIT = 10;
 
 ideaRouter
    .get("/", async (req: Request, res: Response) => {
-      const clientIp = req.clientIp;
+      let clientIp
+      if ("clientIp" in req)
+          clientIp = req.clientIp;
+
       const ideas = await getIdeas();
       const voteCount = await getVoteCount(clientIp);
       const canVote = voteCount < VOTE_LIMIT;
@@ -20,18 +23,21 @@ ideaRouter
       const { id: ideaId } = req.params;
 
       if (!ideaId || isNaN(Number(ideaId)))
-         return res.status(400).json({ error: 'Invalid idea ID' });
+         return res.status(400).json({ error: "Invalid idea ID" });
 
       const idea = await getIdea(ideaId);
-      res.json({ idea });
+      return res.json({ idea });
    })
    .get("/:id/vote", async (req: Request, res: Response) => {
       const { id: ideaId } = req.params;
 
       if (!ideaId || isNaN(Number(ideaId)))
-         return res.status(400).json({ error: 'Invalid idea ID' });
+         return res.status(400).json({ error: "Invalid idea ID" });
 
-      const clientIp = req.clientIp;
+      let clientIp;
+      if ("clientIp" in req)
+         clientIp = req.clientIp;
+
       const targetIdea = await getIdea(ideaId);
 
       if (targetIdea.ips.some((ip: string) => ip === clientIp))
@@ -39,7 +45,6 @@ ideaRouter
       
       const voteCount = await getVoteCount(clientIp);
       const canVote = voteCount < VOTE_LIMIT;
-      console.log(voteCount, VOTE_LIMIT);
 
       if (!canVote)
          return res.status(309).json({ error: "You reached vote limit." });
@@ -47,5 +52,5 @@ ideaRouter
       await upvoteIdea(ideaId as string, clientIp as string);
       const votedIdea = await getIdea(ideaId as string);
 
-      res.json({ ...votedIdea, isVoted: true });
+     return res.json({ ...votedIdea, isVoted: true });
    });

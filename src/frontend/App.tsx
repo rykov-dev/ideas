@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import { upvoteIdea } from './api';
-import { Idea } from './types';
-import { IdeaList } from './components/IdeaList';
-import { Notification } from './components/Notification';
-import { useNotification, useIdea } from './hooks';
+import { upvoteIdea } from "./api";
+import { Idea } from "./types";
+import { IdeaList } from "./components/IdeaList";
+import { Notification } from "./components/Notification";
+import { useNotification, useIdea } from "./hooks";
 
 export function App() {
    const { isLoading, hasError, data, updateItem } = useIdea();

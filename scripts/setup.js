@@ -1,18 +1,8 @@
-// sudo -u postgres createuser dev
-// sudo -u createdb ideas
-// ALTER USER dev WITH ENCRYPTED PASSWORD 'devpassword'
-// GRANT ALL PRIVILEGES ON DATABASE ideas TO dev
-// GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO dev;
-// GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO dev
-
 import { Pool } from "pg";
+import config from "config";
 
-const pool = new Pool({
-   user: "dev",
-   password: "devpassword",
-   database: "ideas",
-   host: "localhost"
-});
+const dbConfig = config.get("db");
+const pool = new Pool(dbConfig);
 
 async function createTables() {
    await pool.query(`
