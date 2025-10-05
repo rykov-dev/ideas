@@ -13,3 +13,20 @@ A public platform for publishing and sharing project improvement ideas with a co
 
 **Database**
 - PostgreSQL
+
+## Setup
+
+Create database and setup dev thinkgs
+`bash
+npm run setup
+`
+
+Fill database with dummy data
+`bash
+npm run seed
+`
+
+Build and deploy
+`bash
+npm run deploy
+`
