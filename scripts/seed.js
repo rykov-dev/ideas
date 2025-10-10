@@ -2,7 +2,7 @@ import { loremIpsum} from "lorem-ipsum";
 import { Pool } from "pg";
 import config from "config";
 
-const dbConfig = config.get("db");
+const dbConfig = "DB_CONNECTION_STRING" in process.env ? ({ connectionString: process.env["DB_CONNECTION_STRING"] }) : config.get("db");
 
 const createRandomIP = (pool = []) => {
    if (Array.isArray(pool) && pool.length > 0) {

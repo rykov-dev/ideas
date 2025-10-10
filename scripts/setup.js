@@ -1,7 +1,7 @@
 import { Pool } from "pg";
 import config from "config";
 
-const dbConfig = config.get("db");
+const dbConfig = "DB_CONNECTION_STRING" in process.env ? ({ connectionString: process.env["DB_CONNECTION_STRING"] }) : config.get("db");
 const pool = new Pool(dbConfig);
 
 async function createTables() {
