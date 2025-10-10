@@ -5,7 +5,7 @@ export default defineConfig({
    build: {
       outDir: "../../build/front",
       emptyOutDir: true,
-      base: "./"
+      base: "https://rykov-dev.github.io/ideas"
    },
    server: {
       proxy: {
@@ -20,3 +20,4 @@ export default defineConfig({
    }
 
 });
+
