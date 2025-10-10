@@ -4,7 +4,8 @@ export default defineConfig({
    root: "./src/frontend",
    build: {
       outDir: "../../build/front",
-      emptyOutDir: true
+      emptyOutDir: true,
+      base: "./"
    },
    server: {
       proxy: {
@@ -17,4 +18,5 @@ export default defineConfig({
          }
       }
    }
+
 });
