@@ -2,6 +2,8 @@
 
 A simple idea board to publish ideas and upvote favorites.
 
+[Demo site](https://rykov-dev.github.io/ideas/)
+
 ## Tech Stack
 - Frontend: React + Vite
 - Backend: Express (TypeScript)
@@ -80,4 +82,5 @@ Outputs:
 - `setup`: create database tables
 - `seed`: fill database with sample ideas and votes
 - `dev`: run backend and frontend
+
 - `build`: build backend or frontend
