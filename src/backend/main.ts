@@ -9,7 +9,6 @@ import config from "config";
 const { PORT: port = 3000 } = process.env;
 const app = express();
 const corsObject = config.get("cors");
-
 app
 .set("trust proxy", true)
 .use(cors(corsObject))

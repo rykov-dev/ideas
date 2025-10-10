@@ -1,6 +1,6 @@
 {
    "cors": {
-      "origin": ["https://rykov-dev.github.io/ideas"],
+      "origin": ["https://rykov-dev.github.io"],
       "methods": ["GET", "POST", "PUT", "DELETE"]
    },
    "API_URL": "https://ideas-z1so.onrender.com"
