@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import config from "config";
 const apiUrl = config.get("API_URL");
-console.log(apiUrl);
 
 export default defineConfig({
    root: "./src/frontend",
