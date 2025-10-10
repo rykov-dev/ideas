@@ -1,8 +1,8 @@
 import { Pool } from "pg";
-import { GET_IDEA, GET_IDEAS, UPVOTE_IDEA, VOTE_COUNT } from './queries';
+import { GET_IDEA, GET_IDEAS, UPVOTE_IDEA, VOTE_COUNT } from "./queries";
 import config from "config";
 
-const dbConfig = config.get("db");
+const dbConfig = "DB_CONNECTION_STRING" in process.env ? ({ connectionString: process.env["DB_CONNECTION_STRING"] }) : config.get("db");
 const pool = new Pool(dbConfig);
 
 export async function getIdeas() {
