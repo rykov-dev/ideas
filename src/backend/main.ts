@@ -14,7 +14,7 @@ app
 .set("trust proxy", true)
 .use(cors(corsObject))
 .use(requestIp.mw())
-.use("/idea", ideaRouter)
+.use("/api/v1/idea", ideaRouter)
 .use(finalErrorHandler);
 
 const server = app.listen(port as number, () => {

@@ -14,7 +14,6 @@ export default defineConfig({
             secure: false,
             changeOrigin: true,
             ws: true,
-            rewrite: path => path.replace(/^\/api\/v1/, "")
          }
       }
    }
