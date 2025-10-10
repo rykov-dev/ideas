@@ -2,10 +2,10 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
    root: "./src/frontend",
+   base: "/ideas/",
    build: {
       outDir: "../../build/front",
       emptyOutDir: true,
-      base: "/ideas"
    },
    server: {
       proxy: {
