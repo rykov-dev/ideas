@@ -44,6 +44,8 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build:front
+      - name: Static 404 page
+        run: cp './build/front/index.html' './build/front/404.html'
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
